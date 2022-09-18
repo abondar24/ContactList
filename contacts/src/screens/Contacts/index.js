@@ -1,12 +1,13 @@
 import React from 'react'
-import {Text,View} from 'react-native';
+import {Text} from 'react-native';
+import Container from '../../components/common/container';
 
 const Contacts = () => {
 
     return (
-        <View>
+        <Container style={{padding: 30}}>
             <Text style={{ color: 'black' }}>Hui</Text>
-        </View>
+        </Container>
     );
   };
   
