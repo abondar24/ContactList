@@ -4,4 +4,4 @@ export default StyleSheet.create({
    wrapper: {
       padding: 20,
    }
-})
+});
