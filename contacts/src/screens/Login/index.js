@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Container from '../../components/common/container';
-import Input from '../../components/common/input';
+import Container from '../../components/common/Container';
+import Input from '../../components/common/Input';
 import { Text } from 'react-native';
 
 const Login = () => {

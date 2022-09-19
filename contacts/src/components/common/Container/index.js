@@ -3,11 +3,11 @@ import React from 'react'
 import styles from './styles'
 
 
-const Container = ({style,children}) => {
+const Container = ({ style, children }) => {
   return (
     <ScrollView>
-      <View style={[styles.wrapper,style]}>
-         {children}
+      <View style={[styles.wrapper, style]}>
+        {children}
       </View>
     </ScrollView>
   )
