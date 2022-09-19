@@ -9,10 +9,10 @@ const Input = ({ onChangeText, icon, iconPosition, style, value, label, error, .
 
     const getFlexDirection = () => {
         if (icon && iconPosition) {
-            if (iconPosition === "left") {
-                return "row";
-            } else if (iconPosition === "right") {
-                return "row-reverse";
+            if (iconPosition === 'left') {
+                return 'row';
+            } else if (iconPosition === 'right') {
+                return 'row-reverse';
             }
         }
     }
@@ -35,7 +35,7 @@ const Input = ({ onChangeText, icon, iconPosition, style, value, label, error, .
         <View style={styles.inputContainer}>
             {label && <Text>{label}</Text>}
             <View style={[styles.wrapper,
-            { alignItems: icon ? "center" : "baseline" },
+            { alignItems: icon ? 'center' : 'baseline' },
             { borderColor: getBorderColor(), flexDirection: getFlexDirection() }]}>
 
                 <View>{icon && icon}</View>

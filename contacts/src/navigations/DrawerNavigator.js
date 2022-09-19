@@ -4,15 +4,15 @@ import HomeNavigator from './HomeNavigator';
 
 
 
-  const DrawerNavigator = () => {
-   
-    const Drawer = createDrawerNavigator();
+const DrawerNavigator = () => {
 
-    return (
-        <Drawer.Navigator>
-           <Drawer.Screen name="Home" component={HomeNavigator} options={{ headerShown: false }}></Drawer.Screen>
-        </Drawer.Navigator>
-    );
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name='Home' component={HomeNavigator} options={{ headerShown: false }}></Drawer.Screen>
+    </Drawer.Navigator>
+  );
 };
 
 
