@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Text, View } from 'react-native';
 import RegisterComponent from '../../components/Register';
+import env from '../../config/env';
 
 const Register = () => {
 
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
+    const { BACKEND_URI } = env;
 
 
     const onChange = ({ name, value }) => {
