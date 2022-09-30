@@ -65,7 +65,7 @@ const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
                         icon={<Text>Show</Text>}
                         iconPosition='right'
                         placeholder='Enter password'
-                        secureTextEntry
+                        isSecure={true}
                         autoCapitalize={'none'}
                         error={errors.password}
                         onChangeText={(value) => onChange({ name: "password", value })}

@@ -37,7 +37,8 @@ const LoginComponent = () => {
                         icon={<Text>Show</Text>}
                         iconPosition='right'
                         placeholder='Enter password'
-                        secureTextEntry={true}
+                        isSecure={true}
+
                     />
 
                     <CustomButton title='Submit' primary />
