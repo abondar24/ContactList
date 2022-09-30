@@ -1,22 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useContext, useState } from 'react'
 import RegisterComponent from '../../components/Register';
-import axiosInstance from '../../helpers/axiosInterceptor';
+import { LOGIN } from '../../constants/routeNames';
+import { clearAuthState } from '../../context/actions/auth/register';
+import register from '../../context/actions/auth/register';
+import { GlobalContext } from '../../context/Provider'
 
 
 const Register = () => {
 
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
+    const { authDispatch, authState: { error, loading, data } } = useContext(GlobalContext);
+    const { navigate } = useNavigation();
 
     React.useEffect(() => {
-        axiosInstance.post('/contacts').catch((err) => {
-            console.log('err', err);
-        });
-    }, []);
+        if (data) {
+            navigate(LOGIN)
+        }
+    }, [data])
 
+    useFocusEffect(
+        React.useCallback(() => {
+            if (data) {
+                clearAuthState()(authDispatch);
+            }
+        }, [data, error])
+    );
 
 
     const onChange = ({ name, value }) => {
+
         setForm({ ...form, [name]: value })
 
         if (value !== '') {
@@ -76,10 +91,23 @@ const Register = () => {
                 return { ...prev, password: "Please fill add a password" }
             });
         }
+
+        if (
+            Object.values(form).length == 5 &&
+            Object.values(form).every(item => item.trim().length > 0) &&
+            Object.values(errors).every(item => !item)
+        ) {
+            register(form)(authDispatch);
+        }
     };
 
     return (
-        <RegisterComponent form={form} errors={errors} onSubmit={onSubmit} onChange={onChange} />
+        <RegisterComponent form={form}
+            errors={errors}
+            error={error}
+            loading={loading}
+            onSubmit={onSubmit}
+            onChange={onChange} />
     );
 };
 

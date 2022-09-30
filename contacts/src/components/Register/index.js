@@ -7,7 +7,7 @@ import styles from './styles'
 import { useNavigation } from '@react-navigation/native';
 import { LOGIN } from '../../constants/routeNames';
 
-const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
+const RegisterComponent = ({ onSubmit, onChange, form, errors, error, loading, ...props }) => {
 
     const { navigate } = useNavigation();
     return (
@@ -31,7 +31,7 @@ const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
                         label='Username'
                         iconPosition='right'
                         placeholder='Enter username'
-                        error={errors.userName}
+                        error={errors.userName || error?.username?.[0]}
                         onChangeText={(value) => onChange({ name: "userName", value })}
                     />
 
@@ -39,7 +39,7 @@ const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
                         label='First name'
                         iconPosition='right'
                         placeholder='Enter first name'
-                        error={errors.firstName}
+                        error={errors.firstName || error?.firstName?.[0]}
                         onChangeText={(value) => onChange({ name: "firstName", value })}
                     />
 
@@ -47,7 +47,7 @@ const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
                         label='Last name'
                         iconPosition='right'
                         placeholder='Enter last name'
-                        error={errors.lastName}
+                        error={errors.lastName || error?.lastName?.[0]}
                         onChangeText={(value) => onChange({ name: "lastName", value })}
                     />
 
@@ -55,7 +55,7 @@ const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
                         label='Email'
                         iconPosition='right'
                         placeholder='Enter email'
-                        error={errors.email}
+                        error={errors.email || error?.email?.[0]}
                         onChangeText={(value) => onChange({ name: "email", value })}
                     />
 
@@ -67,11 +67,15 @@ const RegisterComponent = ({ onSubmit, onChange, form, errors, ...props }) => {
                         placeholder='Enter password'
                         isSecure={true}
                         autoCapitalize={'none'}
-                        error={errors.password}
+                        error={errors.password || error?.password?.[0]}
                         onChangeText={(value) => onChange({ name: "password", value })}
                     />
 
-                    <CustomButton onPress={onSubmit} title='Submit' primary />
+                    <CustomButton onPress={onSubmit}
+                        title='Submit'
+                        loading={loading}
+                        disabled={loading}
+                        primary />
 
                     <View style={styles.createSection}>
                         <Text style={styles.infoText}>
