@@ -1,12 +1,11 @@
-import { DEV_BACKEND_URI, PROD_BACKEND_URI } from '@env'
-
+import { BACKEND_URI } from '@env'
 
 const devEnvVars = {
-    DEV_BACKEND_URI,
+    BACKEND_URI,
 };
 
 const prodEnvVars = {
-    PROD_BACKEND_URI,
+    BACKEND_URI,
 };
 
 
