@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import RegisterComponent from '../../components/Register';
 import { LOGIN } from '../../constants/routeNames';
 import { clearAuthState } from '../../context/actions/auth/register';
 import register from '../../context/actions/auth/register';
-import { GlobalContext } from '../../context/Provider'
+import { GlobalContext } from '../../context/Provider';
 
 
 const Register = () => {
