@@ -23,9 +23,14 @@ const Register = () => {
 
     useFocusEffect(
         React.useCallback(() => {
-            if (data) {
-                clearAuthState()(authDispatch);
+
+
+            return () => {
+                if (data) {
+                    clearAuthState()(authDispatch);
+                }
             }
+
         }, [data, error])
     );
 
