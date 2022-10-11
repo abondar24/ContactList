@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, Image, View, Touchable, TouchableOpacity } from 'react-native';
+import { Text, Image, View, TouchableOpacity } from 'react-native';
 import Container from '../../components/common/Container';
 import Input from '../../components/common/Input';
+import Message from '../../components/common/Message';
 import CustomButton from '../../components/common/CustomButton';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +24,19 @@ const LoginComponent = () => {
                 <Text style={styles.subTitle}>
                     Please login here
                 </Text>
+
+                <Message retry
+                    retryFn={() => {
+                        console.log('222', 222);
+                    }}
+
+                    onDismiss={() => {
+
+                    }}
+
+
+                    primary message="wrong login"></Message>
+                <Message secondary message="wrong password"></Message>
 
                 <View style={styles.form}>
                     <Input
