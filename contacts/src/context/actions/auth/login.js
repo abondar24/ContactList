@@ -1,5 +1,5 @@
 import axiosInstance from "../../../helpers/axiosInterceptor";
-import { LOGIN_FAIL, LOGIN_START, LOGIN_SUCCESS, LOGIN_LOADING } from "../../../constants/actionTypes";
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGIN_LOADING } from "../../../constants/actionTypes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 

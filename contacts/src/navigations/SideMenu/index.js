@@ -1,12 +1,11 @@
-import { View, Text, SafeAreaView, Image, TouchableOpacity, Alert } from 'react-native'
-import React from 'react'
+import { View, Text, SafeAreaView, Image, TouchableOpacity, Alert } from 'react-native';
+import React from 'react';
 import Container from '../../components/common/Container';
 import styles from './styles';
-import { SETTINGS } from '../../constants/routeNames'
+import { SETTINGS } from '../../constants/routeNames';
+import logout from '../../context/actions/auth/logout';
 
-const SideMenu = ({ navigation }) => {
-
-
+const SideMenu = ({ navigation, authDispatch }) => {
 
     const handleLogout = () => {
         navigation.toggleDrawer();
@@ -17,7 +16,9 @@ const SideMenu = ({ navigation }) => {
             },
             {
                 text: 'Ok',
-                onPress: () => { },
+                onPress: () => {
+                    logout()(authDispatch);
+                },
             },
         ]);
     };

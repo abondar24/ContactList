@@ -1,18 +1,22 @@
-import React from 'react'
+import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeNavigator from './HomeNavigator';
-import SideMenu from './SideMenu'
+import SideMenu from './SideMenu';
+import { GlobalContext } from '../context/Provider'
+
+
+const getDrawerContent = (navigation, authDispatch) => {
+
+  return <SideMenu navigation={navigation} authDispatch={authDispatch} />
+}
+
 const DrawerNavigator = () => {
 
-  const getDrawerContent = navigation => {
-
-    return <SideMenu navigation={navigation} />
-  }
-
   const Drawer = createDrawerNavigator();
+  const { authDispatch } = React.useContext(GlobalContext);
 
   return (
-    <Drawer.Navigator drawerType='slide' drawerContent={({ navigation }) => getDrawerContent(navigation)}>
+    <Drawer.Navigator drawerType='slide' drawerContent={({ navigation }) => getDrawerContent(navigation, authDispatch)}>
       <Drawer.Screen name='Home' component={HomeNavigator} options={{ headerShown: false }}></Drawer.Screen>
     </Drawer.Navigator>
   );
