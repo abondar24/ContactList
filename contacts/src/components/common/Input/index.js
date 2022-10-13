@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles';
 import colors from '../../../assets/themes/colors';
 
-const Input = ({ onChangeText, icon, iconPosition, style, value, label, error, isSecure, ...props }) => {
+const Input = ({ onChangeText, icon, iconPosition, style, value, label, error, ...props }) => {
 
     const [focused, setFocused] = React.useState(false);
 
@@ -50,7 +50,7 @@ const Input = ({ onChangeText, icon, iconPosition, style, value, label, error, i
                     onBlur={() => {
                         setFocused(false);
                     }}
-                    secureTextEntry={isSecure}
+                    {...props}
                 />
             </View>
 
