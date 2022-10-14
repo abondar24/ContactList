@@ -8,7 +8,7 @@ import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { REGISTER } from '../../constants/routeNames';
 
-const LoginComponent = ({ error, onChange, onSubmit, loading }) => {
+const LoginComponent = ({ error, form, justSignedUp, onChange, onSubmit, loading }) => {
 
     const { navigate } = useNavigation();
     const [isSecure, setIsSecure] = useState(true);
@@ -27,6 +27,8 @@ const LoginComponent = ({ error, onChange, onSubmit, loading }) => {
                 </Text>
                 <View style={styles.form}>
 
+                    {justSignedUp && <Message onDismiss={() => { }} success message="Account created" />}
+
                     {error && !error.error && (
 
                         <Message onDismiss={() => { }} danger message="invalid credentials" />
@@ -39,6 +41,7 @@ const LoginComponent = ({ error, onChange, onSubmit, loading }) => {
                         label='Username'
                         iconPosition='right'
                         placeholder='Enter username'
+                        value={form.userName || null}
                         onChangeText={(value) => onChange({ name: 'userName', value })}
                     />
 

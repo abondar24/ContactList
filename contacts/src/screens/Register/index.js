@@ -7,7 +7,6 @@ import { clearAuthState } from '../../context/actions/auth/register';
 import register from '../../context/actions/auth/register';
 import { GlobalContext } from '../../context/Provider';
 
-
 const Register = () => {
 
     const [form, setForm] = useState({});
@@ -15,11 +14,6 @@ const Register = () => {
     const { authDispatch, authState: { error, loading, data } } = useContext(GlobalContext);
     const { navigate } = useNavigation();
 
-    React.useEffect(() => {
-        if (data) {
-            navigate(LOGIN)
-        }
-    }, [data])
 
     useFocusEffect(
         React.useCallback(() => {
@@ -102,7 +96,9 @@ const Register = () => {
             Object.values(form).every(item => item.trim().length > 0) &&
             Object.values(errors).every(item => !item)
         ) {
-            register(form)(authDispatch);
+            register(form)(authDispatch)((response) => {
+                navigate(LOGIN, { data: response })
+            });
         }
     };
 

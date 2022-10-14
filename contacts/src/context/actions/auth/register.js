@@ -1,28 +1,31 @@
 import { REGISTER_FAIL, REGISTER_LOADING, REGISTER_SUCCESS, CLEAR_AUTH_STATE } from "../../../constants/actionTypes";
 import axiosInstance from "../../../helpers/axiosInterceptor";
 
-export default ({ email, password, userName: username, firstName: first_name, lastName: last_name }) => dispatch => {
+export default ({ email, password, userName: username, firstName: first_name, lastName: last_name }) => (dispatch) =>
+    (onSuccess) => {
 
-    dispatch({
-        type: REGISTER_LOADING
-    });
-
-    axiosInstance.post("auth/register", {
-        email, password, username, first_name, last_name
-    }).then((res) => {
         dispatch({
-            type: REGISTER_SUCCESS,
-            payload: res.data,
+            type: REGISTER_LOADING
         });
-    })
-        .catch((err) => {
-            console.log('err', err)
+
+        axiosInstance.post("auth/register", {
+            email, password, username, first_name, last_name
+        }).then((res) => {
             dispatch({
-                type: REGISTER_FAIL,
-                payload: err.response ? err.response.data : { error: "Unknown error" },
+                type: REGISTER_SUCCESS,
+                payload: res.data,
             });
-        });
-}
+
+            onSuccess(res.data);
+        })
+            .catch((err) => {
+                console.log('err', err)
+                dispatch({
+                    type: REGISTER_FAIL,
+                    payload: err.response ? err.response.data : { error: "Unknown error" },
+                });
+            });
+    }
 
 
 export const clearAuthState = () => dispatch => {
