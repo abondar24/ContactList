@@ -21,31 +21,37 @@ const ContactsComponent = ({ modalVisible, setModalVisible, data, loading }) => 
 
 
     const renderItem = ({ item }) => {
-        const { contact_picture, first_name, last_name, phone_number } = item;
+        const { contact_picture, first_name, last_name, country_code, phone_number } = item;
 
         return (
             <TouchableOpacity style={styles.itemContainer}>
                 <View style={styles.item}>
-                    {contact_picture ? (<Image style={{ width: 45, height: 45, borderRadius: 100 }} source={{ uri: contact_picture }} />) :
-                        (<View style={{ width: 45, height: 45, backgroundColor: colors.grey }}></View>)}
+                    {contact_picture ? (<Image style={styles.icon} source={{ uri: contact_picture }} />) :
+                        (<View style={styles.iconEmpty}>
+                            <Text style={[styles.name, { color: colors.white }]}>{first_name[0]}</Text>
+                            <Text style={[styles.name, { color: colors.white }]}>{last_name[0]}</Text>
+                        </View>)}
 
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text>
-                            {first_name}
-                        </Text>
-                        <Text>
-                            {last_name}
-                        </Text>
+                    <View style={{ paddingLeft: 20 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={styles.name}>
+                                {first_name}
+                            </Text>
+                            <Text style={styles.name}>
+                                {last_name}
+                            </Text>
+                        </View>
+                        <Text style={styles.phoneNumber}>{`${country_code} ${phone_number}`}</Text>
                     </View>
-                    <Text>{phone_number}</Text>
+
                 </View>
-                <Icon name='right' type='ant' />
+                <Icon name='right' type='ant' size={21} color={colors.grey} />
             </TouchableOpacity>
         );
     };
 
     return (
-        <View>
+        <View style={{ backgroundColor: colors.white }}>
             <AppModal modalVisible={modalVisible} setModalVisible={setModalVisible} modalFooter={<></>}
 
                 modalBody={<View>
@@ -61,9 +67,15 @@ const ContactsComponent = ({ modalVisible, setModalVisible, data, loading }) => 
                 </View>}
             {!loading && (
                 <View style={{ paddingVertical: 20 }}>
-                    <FlatList data={data} keyExtractor={(item) => String(item.id)}
-                        ListEmptyComponent={ListEmptyComponent} renderItem={renderItem}
-                        ListFooterComponent={<View style={{ height: 150 }}></View>} />
+                    <FlatList
+                        data={data}
+                        keyExtractor={(item) => String(item.id)}
+                        renderItem={renderItem}
+                        ListEmptyComponent={ListEmptyComponent}
+                        ListFooterComponent={<View style={{ height: 150 }}></View>}
+                        ItemSeparatorComponent={() => {
+                            <View style={{ height: 0.5, backgroundColor: colors.grey }}></View>
+                        }} />
                 </View>
 
             )}
