@@ -1,4 +1,4 @@
-import axiosInstance from "../../../helpers/axiosInterceptor";
+import axiosInstance from "../../../helpers/axiosIntstance";
 import { LOGIN_FAIL, LOGIN_SUCCESS, LOGIN_LOADING } from "../../../constants/actionTypes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -23,7 +23,6 @@ export default ({
         });
     })
         .catch((err) => {
-            console.log('err', err)
             dispatch({
                 type: LOGIN_FAIL,
                 payload: err.response ? err.response.data : { error: "Unknown error" },
