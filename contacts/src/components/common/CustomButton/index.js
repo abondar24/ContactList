@@ -34,7 +34,7 @@ const CustomButton = ({ title, loading, onPress, disabled, secondary, primary, d
                 {loading && (<ActivityIndicator color={primary ? colors.secondary : colors.primary} />)}
 
                 {title && (<Text style={{ color: disabled ? colors.black : colors.white, paddingLeft: loading ? 5 : 0 }}>
-                    {title}
+                    {loading ? 'Please wait...' : title}
                 </Text>
                 )}
             </View>

@@ -6,7 +6,7 @@ export default () => dispatch => {
         type: GET_CONTACTS_LOADING,
     });
 
-    axiosInstance.get('/contacts').then(res => {
+    axiosInstance.get('/contacts/').then(res => {
         dispatch({
             type: GET_CONTACTS_SUCCESS,
             payload: res.data,
