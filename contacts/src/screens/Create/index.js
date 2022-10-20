@@ -1,12 +1,9 @@
 import React from 'react'
-import {Text,View} from 'react-native';
-
+import CreateComponent from '../../components/Create';
 
 const Create = () => {
     return (
-        <View>
-            <Text style={{ color: 'black' }}>Hii</Text>
-        </View>
+        <CreateComponent />
     );
 };
 
