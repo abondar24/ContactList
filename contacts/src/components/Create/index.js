@@ -1,4 +1,4 @@
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, Switch } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import Input from '../common/Input'
@@ -6,8 +6,9 @@ import Container from '../common/Container'
 import CustomButton from '../common/CustomButton'
 import CountryPicker from 'react-native-country-picker-modal'
 import { DEFAULT_IMAGE } from '../../constants/general'
+import colors from '../../assets/themes/colors'
 
-const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error }) => {
+const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error, toggleValueChange }) => {
     return (
         <View style={styles.container}>
             <Container>
@@ -50,6 +51,16 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
                     placeholder="Enter phone"
                     style={{ paddingLeft: 10 }} />
 
+                <View style={styles.switch}>
+                    <Text style={{ fontSize: 17 }}>Add to favorites</Text>
+                    <Switch
+                        trackColor={{ false: "#767577", true: colors.primary }}
+                        thumbColor={"#FFFFFF"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleValueChange}
+                        value={form.isFavorite}
+                    />
+                </View>
                 <CustomButton
                     primary
                     loading={loading}

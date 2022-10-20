@@ -26,12 +26,19 @@ const Create = () => {
             navigate(CONTACTS);
         })
     }
+
+    const toggleValueChange = () => {
+        setForm({ ...form, "isFavorite": !form.isFavorite });
+    };
+
+
     return (
         <CreateComponent onChangeText={onChangeText}
             form={form}
             onSubmit={onSubmit}
             setForm={setForm}
             loading={loading}
+            toggleValueChange={toggleValueChange}
             error={error} />
     );
 };
