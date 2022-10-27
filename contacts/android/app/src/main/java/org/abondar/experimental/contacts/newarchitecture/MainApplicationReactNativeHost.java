@@ -1,7 +1,9 @@
 package org.abondar.experimental.contacts.newarchitecture;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -19,9 +21,11 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
+
 import org.abondar.experimental.contacts.BuildConfig;
 import org.abondar.experimental.contacts.newarchitecture.components.MainComponentsRegistry;
 import org.abondar.experimental.contacts.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+
 import java.util.ArrayList;
 import java.util.List;
 
