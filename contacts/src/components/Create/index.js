@@ -1,4 +1,4 @@
-import { View, Image, Text, Switch } from 'react-native'
+import { View, Image, Text, Switch, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import Input from '../common/Input'
@@ -7,13 +7,19 @@ import CustomButton from '../common/CustomButton'
 import CountryPicker from 'react-native-country-picker-modal'
 import { DEFAULT_IMAGE } from '../../constants/general'
 import colors from '../../assets/themes/colors'
+import ImagePicker from '../common/ ImagePicker'
 
-const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error, toggleValueChange }) => {
+const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error, toggleValueChange,
+    sheetRef, openSheet, closeSheet }) => {
+
     return (
         <View style={styles.container}>
             <Container>
                 <Image source={{ uri: DEFAULT_IMAGE }} style={styles.imageView} width={150} height={150} />
-                <Text style={styles.chooseText}>Choose image</Text>
+                <TouchableOpacity onPress={openSheet}>
+                    <Text style={styles.chooseText}>Choose image</Text>
+                </TouchableOpacity>
+
                 <Input
                     label="First name"
                     placeholder="Enter first name"
@@ -68,6 +74,8 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
                     title="Submit"
                     onPress={onSubmit} />
             </Container>
+
+            <ImagePicker ref={sheetRef} />
         </View>
     )
 }
