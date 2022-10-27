@@ -15,11 +15,11 @@ const Create = () => {
         }
     } = useContext(GlobalContext);
 
+    const [localFile, setLocalFile] = useState(null);
 
     const onChangeText = ({ name, value }) => {
         setForm({ ...form, [name]: value });
     }
-
 
     const onSubmit = () => {
         createContact(form)(contactsDispatch)(() => {
@@ -45,6 +45,13 @@ const Create = () => {
         }
     }
 
+    const onFileSelected = (image) => {
+        closeSheet();
+        setLocalFile(image)
+    }
+
+
+
     return (
         <CreateComponent onChangeText={onChangeText}
             form={form}
@@ -56,6 +63,8 @@ const Create = () => {
             sheetRef={sheetRef}
             closeSheet={closeSheet}
             openSheet={openSheet}
+            onFileSelected={onFileSelected}
+            localFile={localFile}
         />
     );
 };

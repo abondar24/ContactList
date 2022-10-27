@@ -10,12 +10,12 @@ import colors from '../../assets/themes/colors'
 import ImagePicker from '../common/ ImagePicker'
 
 const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error, toggleValueChange,
-    sheetRef, openSheet, closeSheet }) => {
+    sheetRef, openSheet, closeSheet, onFileSelected, localFile }) => {
 
     return (
         <View style={styles.container}>
             <Container>
-                <Image source={{ uri: DEFAULT_IMAGE }} style={styles.imageView} width={150} height={150} />
+                <Image source={{ uri: localFile?.path || DEFAULT_IMAGE }} style={styles.imageView} width={150} height={150} />
                 <TouchableOpacity onPress={openSheet}>
                     <Text style={styles.chooseText}>Choose image</Text>
                 </TouchableOpacity>
@@ -75,7 +75,7 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
                     onPress={onSubmit} />
             </Container>
 
-            <ImagePicker ref={sheetRef} />
+            <ImagePicker ref={sheetRef} onFileSelected={onFileSelected} />
         </View>
     )
 }
