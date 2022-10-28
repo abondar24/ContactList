@@ -1,21 +1,27 @@
 import React from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Icon from "../Icon";
-
 import styles from "./styles";
+import PropTypes from 'prop-types'
 
-const AppModal = ({ modalVisible, title, modalBody, modalFooter, setModalVisible }) => {
+const AppModal = ({ modalVisible, title, modalBody, modalFooter, setModalVisible, closeOnTouchOutside }) => {
     return <Modal visible={modalVisible} transparent>
         <TouchableOpacity onPress={() => {
-            setModalVisible(false);
+            if (closeOnTouchOutside) {
+                setModalVisible(false);
+            }
+
         }} style={styles.wrapper}>
-
-
 
             <View style={styles.modalView}>
                 <ScrollView>
                     <View style={styles.header}>
-                        <Icon name='close' type='evil' size={27} />
+                        <TouchableOpacity onPress={() => {
+                            setModalVisible(false);
+                        }}>
+                            <Icon name='close' type='evil' size={27} />
+                        </TouchableOpacity>
+
                         <Text style={styles.title}>{title || 'Contacts'}</Text>
 
                         <View />
@@ -44,5 +50,13 @@ const AppModal = ({ modalVisible, title, modalBody, modalFooter, setModalVisible
 
     </Modal>
 }
+
+AppModal.propTypes = {
+    closeOnTouchOutside: PropTypes.bool,
+};
+
+AppModal.def = {
+    closeOnTouchOutside: true,
+};
 
 export default AppModal;

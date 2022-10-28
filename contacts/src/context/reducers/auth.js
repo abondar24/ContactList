@@ -47,7 +47,6 @@ const auth = (state, { type, payload }) => {
                 ...state,
                 loading: false,
                 data: null,
-                error: null,
                 isLoggedIn: false
             };
 
