@@ -4,10 +4,12 @@ import CreateComponent from '../../components/Create';
 import { CONTACTS } from '../../constants/routeNames';
 import createContact from '../../context/actions/contacts/createContact';
 import { GlobalContext } from '../../context/Provider';
+import uploadImage from '../../helpers/uploadImage';
 
 const Create = () => {
     const [form, setForm] = useState({});
     const { navigate } = useNavigation();
+    const [uploading, setIsUploading] = useState(false);
 
     const { contactsDispatch,
         contactsState: {
@@ -22,9 +24,23 @@ const Create = () => {
     }
 
     const onSubmit = () => {
-        createContact(form)(contactsDispatch)(() => {
-            navigate(CONTACTS);
-        })
+
+
+        if (localFile?.size) {
+            setIsUploading(true);
+            uploadImage(localFile)((url) => {
+                setIsUploading(false);
+                createContact({ ...form, contactPicture: url })(contactsDispatch)(() => {
+                    navigate(CONTACTS);
+                });
+
+            })((error) => {
+                console.log(error);
+                setIsUploading(false);
+            });
+        }
+
+
     }
 
     const toggleValueChange = () => {
@@ -57,7 +73,7 @@ const Create = () => {
             form={form}
             onSubmit={onSubmit}
             setForm={setForm}
-            loading={loading}
+            loading={loading || uploading}
             toggleValueChange={toggleValueChange}
             error={error}
             sheetRef={sheetRef}

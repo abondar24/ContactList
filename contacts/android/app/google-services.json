@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "424417132075",
+    "project_id": "contacts-a16dc",
+    "storage_bucket": "contacts-a16dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424417132075:android:329a2b3936f37d67abb46e",
+        "android_client_info": {
+          "package_name": "org.abondar.experimental.contacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424417132075-polmpdmb4h251828mhuqt74e9m7sjbnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi3yEz3aXZgfgPMVPs5rT-9Kuaw1Z3bEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424417132075-polmpdmb4h251828mhuqt74e9m7sjbnv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
