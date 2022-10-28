@@ -2,7 +2,7 @@ import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import env from '../config/env'
 import { navigate } from '../navigations/RootNavigator';
-import CREATE_CONTACT from '../constants/routeNames';
+import LOGOUT from '../constants/routeNames';
 
 let headers = {};
 
@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     async (config) => {
 
-        //  navigate(CREATE_CONTACT);
+
         const token = await AsyncStorage.getItem('token');
 
         if (token) {
@@ -28,6 +28,25 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+
+axiosInstance.interceptors.response.use(response => new Promise((resolve, reject) => {
+    resolve(response);
+}, error => {
+    if (!error.response) {
+        return new Promise((resolve, reject) => {
+            reject(error);
+        });
+    }
+
+    if (error.status === 403) {
+        navigate(LOGOUT, { tokenExpired: true });
+    } else {
+        return new Promise((resolve, reject) => {
+            reject(error);
+        });
+
+    }
+}));
 
 
 export default axiosInstance;
