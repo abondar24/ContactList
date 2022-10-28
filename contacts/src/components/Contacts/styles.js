@@ -13,7 +13,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingRight: 20,
-        alignItems: 'center'
+        alignItems: 'center',
+        flexGrow: 1
     },
     name: {
         fontSize: 17

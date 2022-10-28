@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Image } from 'react-native'
-import AppModal from "../common/AppModal";
 import Message from '../../components/common/Message'
 import colors from "../../assets/themes/colors";
 import Icon from "../common/Icon";
@@ -8,7 +7,7 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { CREATE } from "../../constants/routeNames";
 
-const ContactsComponent = ({ modalVisible, setModalVisible, data, loading }) => {
+const ContactsComponent = ({ data, loading, sortBy }) => {
 
     const { navigate } = useNavigation();
 
@@ -37,15 +36,11 @@ const ContactsComponent = ({ modalVisible, setModalVisible, data, loading }) => 
                     <View style={{ paddingLeft: 20 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.name}>
-                                {first_name}
-                            </Text>
-                            <Text style={styles.name}>
-                                {last_name}
+                                {`${first_name} ${last_name}`}
                             </Text>
                         </View>
                         <Text style={styles.phoneNumber}>{`${country_code} ${phone_number}`}</Text>
                     </View>
-
                 </View>
                 <Icon name='right' type='ant' size={21} color={colors.grey} />
             </TouchableOpacity>
@@ -55,15 +50,6 @@ const ContactsComponent = ({ modalVisible, setModalVisible, data, loading }) => 
     return (
         <>
             <View style={{ backgroundColor: colors.white }}>
-                <AppModal modalVisible={modalVisible} setModalVisible={setModalVisible} modalFooter={<></>}
-
-                    modalBody={<View>
-                        <Text>Ya </Text>
-                    </View>}
-                    title='Profile'>
-
-                </AppModal>
-
                 {loading &&
                     <View style={{ paddingVertical: 100, paddingHorizontal: 100 }}>
                         <ActivityIndicator size='large' color={colors.primary} />
@@ -71,14 +57,31 @@ const ContactsComponent = ({ modalVisible, setModalVisible, data, loading }) => 
                 {!loading && (
                     <View style={{ paddingVertical: 20 }}>
                         <FlatList
-                            data={data}
+                            data={sortBy ? data.sort((a, b) => {
+                                if (sortBy === 'First Name') {
+                                    if (b.first_name > a.first_name) {
+                                        return -1
+                                    } else {
+                                        return 1
+                                    }
+                                }
+
+                                if (sortBy === 'Last Name') {
+                                    if (b.last_name > a.last_name) {
+                                        return -1
+                                    } else {
+                                        return 1
+                                    }
+                                }
+                            }) : data}
                             keyExtractor={(item) => String(item.id)}
                             renderItem={renderItem}
                             ListEmptyComponent={ListEmptyComponent}
                             ListFooterComponent={<View style={{ height: 150 }}></View>}
                             ItemSeparatorComponent={() => {
                                 <View style={{ height: 0.5, backgroundColor: colors.grey }}></View>
-                            }} />
+                            }}
+                        />
                     </View>
 
                 )}
