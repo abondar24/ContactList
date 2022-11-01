@@ -5,10 +5,7 @@ import logout from '../../context/actions/auth/logout';
 
 const Logout = () => {
 
-    const {
-        authDispatch,
-        authState: { error, loading }
-    } = useContext(GlobalContext);
+    const { authDispatch } = useContext(GlobalContext);
 
 
     useEffect(() => {
@@ -19,4 +16,4 @@ const Logout = () => {
     )
 }
 
-export default Logout
+export default Logout;

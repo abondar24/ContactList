@@ -11,7 +11,7 @@ const HomeNavigator = () => {
     const HomeStack = createNativeStackNavigator();
 
     return (
-        <HomeStack.Navigator initialRouteName="Contact" screenOptions={{ headerTitleAlign: 'center' }}>
+        <HomeStack.Navigator initialRouteName={CONTACTS} screenOptions={{ headerTitleAlign: 'center' }}>
             <HomeStack.Screen name={CONTACTS} component={Contacts}></HomeStack.Screen >
             <HomeStack.Screen name={DETAILS} component={Details}></HomeStack.Screen>
             <HomeStack.Screen name={CREATE} component={Create}></HomeStack.Screen>

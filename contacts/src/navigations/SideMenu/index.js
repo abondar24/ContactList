@@ -19,7 +19,7 @@ const SideMenu = ({ navigation, authDispatch }) => {
                 text: 'Ok',
                 onPress: () => {
                     logout()(authDispatch);
-                },
+                }
             },
         ]);
     };
@@ -56,4 +56,4 @@ const SideMenu = ({ navigation, authDispatch }) => {
     )
 }
 
-export default SideMenu
+export default SideMenu;
