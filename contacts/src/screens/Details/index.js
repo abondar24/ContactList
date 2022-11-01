@@ -1,12 +1,12 @@
+import { useRoute } from '@react-navigation/native';
 import React from 'react'
-import {Text,View} from 'react-native';
-
+import DetailsComponent from '../../components/Details';
 
 const Details = () => {
+
+    const { params: { item = {} } = {} } = useRoute();
     return (
-        <View>
-            <Text style={{ color: 'black' }}>Hii</Text>
-        </View>
+        <DetailsComponent contact={item} />
     );
 };
 

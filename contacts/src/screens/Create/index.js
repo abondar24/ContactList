@@ -35,7 +35,7 @@ const Create = () => {
                 });
 
             })((error) => {
-                console.log(error);
+
                 setIsUploading(false);
             });
         }
