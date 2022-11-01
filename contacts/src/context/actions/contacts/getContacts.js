@@ -1,7 +1,7 @@
 import { GET_CONTACTS_LOADING, GET_CONTACTS_FAIL, GET_CONTACTS_SUCCESS } from "../../../constants/actionTypes";
 import axiosInstance from "../../../helpers/axiosIntstance";
 
-export default () => dispatch => {
+export default () => (dispatch) => {
     dispatch({
         type: GET_CONTACTS_LOADING,
     });
