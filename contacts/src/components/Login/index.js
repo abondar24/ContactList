@@ -7,6 +7,7 @@ import CustomButton from '../../components/common/CustomButton';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { REGISTER } from '../../constants/routeNames';
+import { scale } from 'react-native-size-matters'
 
 const LoginComponent = ({ error, form, justSignedUp, onChange, onSubmit, loading }) => {
 
@@ -14,8 +15,8 @@ const LoginComponent = ({ error, form, justSignedUp, onChange, onSubmit, loading
     const [isSecure, setIsSecure] = useState(true);
     return (
         <Container>
-            <Image height={70}
-                width={70}
+            <Image height={scale(70)}
+                width={scale(70)}
                 source={require('../../assets/images/logo.png')}
                 style={styles.logoImage} />
             <View>
