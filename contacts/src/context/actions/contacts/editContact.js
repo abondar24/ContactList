@@ -1,8 +1,8 @@
 import axiosInstance from "../../../helpers/axiosIntstance";
-import { CREATE_CONTACT_FAIL, CREATE_CONTACT_LOADING, CREATE_CONTACT_SUCCESS } from "../../../constants/actionTypes";
+import { EDIT_CONTACT_FAIL, EDIT_CONTACT_LOADING, EDIT_CONTACT_SUCCESS } from "../../../constants/actionTypes";
 
 
-export default (form) => dispatch => (onSuccess) => {
+export default (form, id) => dispatch => (onSuccess) => {
 
     const requestPayload = {
         country_code: form.phoneCode || '',
@@ -14,22 +14,22 @@ export default (form) => dispatch => (onSuccess) => {
     }
 
     dispatch({
-        type: CREATE_CONTACT_LOADING,
+        type: EDIT_CONTACT_LOADING,
     });
 
 
-    axiosInstance.post('/contacts/', requestPayload).then(res => {
+    axiosInstance.put(`/contacts/${id}`, requestPayload).then(res => {
         dispatch({
-            type: CREATE_CONTACT_SUCCESS,
+            type: EDIT_CONTACT_SUCCESS,
             payload: res.data,
         });
 
-        onSuccess();
+        onSuccess(res.data);
     })
         .catch(err => {
             console.log(err);
             dispatch({
-                type: CREATE_CONTACT_FAIL,
+                type: EDIT_CONTACT_FAIL,
                 payload: err.response ? err.response.data : { error: "Unknown error" },
             });
         });

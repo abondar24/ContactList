@@ -13,6 +13,7 @@ export default () => (dispatch) => {
         });
     })
         .catch(err => {
+            console.log(err);
             dispatch({
                 type: GET_CONTACTS_FAIL,
                 payload: err.response ? err.response.data : { error: "Unknown error" },

@@ -19,6 +19,7 @@ export default (id) => (dispatch) => (onSuccess) => {
         onSuccess();
     })
         .catch(err => {
+            console.log(err);
             dispatch({
                 type: DELETE_CONTACT_FAIL,
                 payload: err.response ? err.response.data : { error: "Unknown error" },

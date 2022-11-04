@@ -15,7 +15,7 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
     return (
         <View style={styles.container}>
             <Container>
-                <Image source={{ uri: localFile?.path || DEFAULT_IMAGE }} style={styles.imageView} width={150} height={150} />
+                <Image source={{ uri: localFile?.path || localFile || DEFAULT_IMAGE }} style={styles.imageView} width={150} height={150} />
                 <TouchableOpacity onPress={openSheet}>
                     <Text style={styles.chooseText}>Choose image</Text>
                 </TouchableOpacity>
@@ -24,6 +24,7 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
                     label="First name"
                     placeholder="Enter first name"
                     error={error?.first_name?.[0]}
+                    value={form.firstName || ''}
                     onChangeText={(value) => {
                         onChangeText({ name: 'firstName', value: value })
                     }} />
@@ -31,6 +32,7 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
                     label="Last name"
                     placeholder="Enter last name"
                     error={error?.last_name?.[0]}
+                    value={form.lastName || ''}
                     onChangeText={(value) => {
                         onChangeText({ name: 'lastName', value: value })
                     }} />
@@ -55,6 +57,7 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
                     error={error?.phone_number?.[0]}
                     label="Phone number"
                     placeholder="Enter phone"
+                    value={form.phoneNumber || ''}
                     style={{ paddingLeft: 10 }} />
 
                 <View style={styles.switch}>
