@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import { useNavigation } from '@react-navigation/native'
@@ -7,8 +7,10 @@ import colors from '../../assets/themes/colors'
 import Icon from '../common/Icon'
 import { CREATE } from '../../constants/routeNames'
 import CustomButton from '../common/CustomButton'
+import { DEFAULT_IMAGE } from '../../constants/general'
+import ImagePicker from '../common/ ImagePicker'
 
-const DetailsComponent = ({ contact }) => {
+const DetailsComponent = ({ contact, localFile, openSheet, sheetRef, onFileSelected, uploadingImage, uploadSuccess }) => {
     const { navigate } = useNavigation();
 
     const {
@@ -23,7 +25,27 @@ const DetailsComponent = ({ contact }) => {
     return (
         <ScrollView style={styles.scrollView}>
             <View style={styles.container}>
-                {contact_picture && <ImageComponent src={contact_picture} />}
+                {(contact_picture || uploadSuccess) &&
+                    (<ImageComponent src={contact_picture || localFile?.path} />)}
+                {!contact_picture && !uploadSuccess && (
+                    <View style={styles.imageView}>
+                        <Image
+                            source={{ uri: localFile?.path || DEFAULT_IMAGE }}
+                            style={styles.image}
+                            width={150}
+                            height={150}
+                        />
+                        <TouchableOpacity onPress={openSheet}>
+
+                            <Text style={styles.chooseText}>
+                                {' '}
+                                {uploadingImage ? 'Uploading image' : 'Choose image'}
+                            </Text>
+                        </TouchableOpacity>
+
+                    </View>
+                )}
+
                 <View style={styles.content}>
                     <Text style={styles.names}>{first_name + ' ' + last_name}</Text>
                 </View>
@@ -99,7 +121,7 @@ const DetailsComponent = ({ contact }) => {
                     }
                 />
             </View>
-
+            <ImagePicker ref={sheetRef} onFileSelected={onFileSelected} />
         </ScrollView>
     )
 }

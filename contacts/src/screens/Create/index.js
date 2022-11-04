@@ -112,7 +112,7 @@ const Create = () => {
         setForm({ ...form, "isFavorite": !form.isFavorite });
     };
 
-    const sheetRef = useRef(null)
+    const sheetRef = useRef(null);
 
     const closeSheet = () => {
         if (sheetRef.current) {

@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import DetailsComponent from '../../components/Details';
 import { TouchableOpacity, View, Alert, ActivityIndicator } from 'react-native';
 import Icon from '../../components/common/Icon';
@@ -8,7 +8,8 @@ import { GlobalContext } from '../../context/Provider';
 import deleteContact from '../../context/actions/contacts/deleteContact';
 import { navigate } from '../../navigations/SideMenu/RootNavigator';
 import { CONTACTS } from '../../constants/routeNames';
-
+import uploadImage from '../../helpers/uploadImage';
+import editContact from '../../context/actions/contacts/editContact';
 
 const Details = () => {
 
@@ -75,8 +76,60 @@ const Details = () => {
         }
     }, [item, loading]);
 
+    const sheetRef = useRef(null);
+    const [localFile, setLocalFile] = useState(null);
+    const [uploading, setIsUploading] = useState(false);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+
+    const closeSheet = () => {
+        if (sheetRef.current) {
+            sheetRef.current.close();
+        }
+    }
+
+    const openSheet = () => {
+        if (sheetRef.current) {
+            sheetRef.current.open();
+        }
+    }
+
+    const onFileSelected = (image) => {
+        closeSheet();
+        setLocalFile(image);
+        setIsUploading(true);
+
+        const {
+            first_name: firstName,
+            last_name: lastName,
+            country_code: phoneCode,
+            phone_number: phoneNumber,
+            is_favorite: isFavorite
+        } = item;
+
+        uploadImage(image)((url) => {
+            setIsUploading(false);
+            editContact({ firstName, lastName, isFavorite, phoneCode, phoneNumber, contactPicture: url }, item.id)
+                (contactsDispatch)((item) => {
+                    setIsUploading(false);
+                    setUploadSuccess(true);
+                });
+
+        })((error) => {
+
+            setIsUploading(false);
+        });
+    }
+
+
     return (
-        <DetailsComponent contact={item} />
+        <DetailsComponent contact={item}
+            sheetRef={sheetRef}
+            onFileSelected={onFileSelected}
+            openSheet={openSheet}
+            localFile={localFile}
+            uploadingImage={uploading}
+            uploadSuccess={uploadSuccess}
+        />
     );
 };
 

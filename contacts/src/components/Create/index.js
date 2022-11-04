@@ -15,7 +15,12 @@ const CreateComponent = ({ onChangeText, form, onSubmit, setForm, loading, error
     return (
         <View style={styles.container}>
             <Container>
-                <Image source={{ uri: localFile?.path || localFile || DEFAULT_IMAGE }} style={styles.imageView} width={150} height={150} />
+                <Image
+                    source={{ uri: localFile?.path || localFile || DEFAULT_IMAGE }}
+                    style={styles.imageView}
+                    width={150}
+                    height={150}
+                />
                 <TouchableOpacity onPress={openSheet}>
                     <Text style={styles.chooseText}>Choose image</Text>
                 </TouchableOpacity>

@@ -53,5 +53,19 @@ export default StyleSheet.create({
         alignSelf: 'flex-end',
         marginRight: 20,
         width: 200
-    }
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 100,
+        alignSelf: 'center',
+    },
+    imageView: {
+        alignItems: 'center',
+        paddingVertical: 20
+    },
+    chooseText: {
+        color: colors.primary,
+        textAlign: 'center'
+    },
 })
