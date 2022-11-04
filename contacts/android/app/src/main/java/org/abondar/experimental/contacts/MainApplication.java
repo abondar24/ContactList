@@ -3,6 +3,8 @@ package org.abondar.experimental.contacts;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDexApplication;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -16,7 +18,7 @@ import org.abondar.experimental.contacts.newarchitecture.MainApplicationReactNat
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
