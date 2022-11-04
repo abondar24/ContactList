@@ -6,7 +6,7 @@ import Icon from '../../components/common/Icon';
 import colors from '../../assets/themes/colors';
 import { GlobalContext } from '../../context/Provider';
 import deleteContact from '../../context/actions/contacts/deleteContact';
-import { navigate } from '../../navigations/RootNavigator';
+import { navigate } from '../../navigations/SideMenu/RootNavigator';
 import { CONTACTS } from '../../constants/routeNames';
 
 

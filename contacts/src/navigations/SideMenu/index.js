@@ -24,11 +24,13 @@ const SideMenu = ({ navigation, authDispatch }) => {
         ]);
     };
 
+    const handleSettings = () => {
+        navigation.navigate(SETTINGS);
+    }
+
     const menuItems = [
         {
-            icon: <Icon type='fontisto' name='player-settings' size={17}></Icon>, name: 'Settings', onPress: () => {
-                navigation.navigate(SETTINGS);
-            }
+            icon: <Icon type='fontisto' name='player-settings' size={17}></Icon>, name: 'Settings', onPress: handleSettings,
         },
         {
             icon: <Icon type='material' name='logout' size={17}></Icon>, name: 'Log out', onPress: handleLogout,
@@ -47,7 +49,7 @@ const SideMenu = ({ navigation, authDispatch }) => {
                 <View style={{ paddingHorizontal: 70 }}>
                     {menuItems.map(({ name, icon, onPress }) =>
                         <TouchableOpacity key={name} style={styles.item} onPress={onPress}>
-                            {icon}
+                            <View>{icon}</View>
                             <Text style={styles.itemText}>{name}</Text>
                         </TouchableOpacity>)}
                 </View>
